@@ -3,7 +3,7 @@ remote_committer='origin'
 committer_branch='ibmf_custom'
 test_branch='ibm_current'
 
-usage="Usage: $0 COMMITTER_REMOTE COMMITTER_BRANCH"
+usage="Usage: $0 COMMITTER_REMOTE:COMMITTER_BRANCH"
 
 if [ ! -z "$1" -a "$1" == "-h" ]
 then
@@ -13,12 +13,8 @@ fi
 
 if [ ! -z "$1" ]
 then
-remote_committer="$1" ;
-fi
-
-if [ ! -z "$2" ]
-then
-committer_branch="$2" ;
+remote_committer=`echo "$1" | cut -d: -f1`
+committer_branch=`echo "$1" | cut -d: -f2`
 fi
 
 echo 'Cleaning up'
